@@ -12,6 +12,7 @@ var express = require('express')
   , logger = require('morgan')
   , methodOverride = require('method-override');
 
+
 var app = express();
 
 app.set('port', process.env.PORT || 3000);
@@ -28,7 +29,15 @@ if (app.get('env') == 'development') {
 	app.locals.pretty = true;
 }
 
+app.get('/nasdaq', routes.nasdaq);
 app.get('/', routes.index);
+app.get('/omsx', routes.omsx);
+app.get('/dax', routes.dax);
+app.get('/shanghai', routes.shanghai);
+app.get('/hangseng', routes.hangseng);
+app.get('/gold', routes.gold);
+app.get('/bitcoin', routes.bitcoin);
+app.get('/oil', routes.oil);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
